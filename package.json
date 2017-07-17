@@ -1,0 +1,37 @@
+{
+  "name": "pure-function",
+  "version": "0.0.1-alpha.1",
+  "description": "This library contains pure javascript functions to the acts on the supplied input parameters into outputs with no internal state",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "jest": "./node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oredi/pure-function.git"
+  },
+  "keywords": [
+    "pure",
+    "javascript"
+  ],
+  "author": "Darren Seet Serkai <darren_seet@oredi.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oredi/pure-function/issues"
+  },
+  "homepage": "https://github.com/oredi/pure-function#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-node6": "^11.0.0",
+    "eslint": "^4.2.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^20.0.4"
+  }
+}

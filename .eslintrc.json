@@ -1,0 +1,7 @@
+{
+  "extends": "google",
+  "rules": {
+    "comma-dangle": ["error", "never"]
+  },
+  "parser": "babel-eslint"
+}
