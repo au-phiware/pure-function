@@ -11,8 +11,9 @@ export default (config) => {
 
   if (
     !config.hasOwnProperty('expression')
-    || !config.expression
-    || !config.expression.trim()
+    || typeof config.expression !== 'object'
+    || !config.expression.toString().startsWith('/')
+    || !config.expression.toString().endsWith('/')
   ) {
     throw new TypeError('config.expression');
   }

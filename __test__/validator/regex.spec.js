@@ -27,28 +27,28 @@ describe('validate', () => {
         expect(() => regex({})).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a message is undefined', () => {
+    it('should throw a TypeError if message is undefined', () => {
         expect(() => regex({
           message: undefined,
           expression: 'expression'
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a message is null', () => {
+    it('should throw a TypeError if message is null', () => {
         expect(() => regex({
           message: null,
           expression: 'expression'
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a message is ""', () => {
+    it('should throw a TypeError if message is ""', () => {
         expect(() => regex({
           message: '',
           expression: 'expression'
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a message is " "', () => {
+    it('should throw a TypeError if message is " "', () => {
         expect(() => regex({
           message: ' ',
           expression: 'expression'
@@ -56,44 +56,53 @@ describe('validate', () => {
     });
 
     it(`
-      should throw a TypeError if a expression is not
+      should throw a TypeError if expression is not
       a property of the config object
     `, () => {
         expect(() => regex({message: 'message'})).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a expression is undefined', () => {
+    it('should throw a TypeError if expression is undefined', () => {
         expect(() => regex({
           message: 'message',
           expression: undefined
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a expression is null', () => {
+    it('should throw a TypeError if expression is null', () => {
         expect(() => regex({
           message: 'message',
           expression: null
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a expression is ""', () => {
+    it('should throw a TypeError if expression is ""', () => {
         expect(() => regex({
           message: 'message',
           expression: ''
         })).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if a expression is " "', () => {
+    it('should throw a TypeError if expression is " "', () => {
         expect(() => regex({
           message: 'message',
           expression: ' '
+        })).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if expression is not a regular expression object
+    `, () => {
+        expect(() => regex({
+          message: 'message',
+          expression: {}
         })).toThrowError(TypeError);
     });
   });
 
   describe('execution', () => {
     const validationMessage = 'Value must match regular expression';
-    const validate = regex({message: validationMessage, expression: '[a-z]'});
+    const validate = regex({message: validationMessage, expression: /[a-z]/});
 
     describe('invalid values', () => {
       describe('undefined', () => {
