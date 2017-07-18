@@ -1,3 +1,3 @@
-import validator from './validator';
+import {validator} from './validator';
 
 export {validator};
