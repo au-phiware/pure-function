@@ -1,6 +1,6 @@
 {
   "name": "pure-function",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "This library contains pure javascript functions to the acts on the supplied input parameters into outputs with no internal state",
   "main": "index.js",
   "scripts": {
