@@ -1,3 +1,3 @@
-import {validator} from './validator';
+import * as validator from './validator';
 
 module.exports = validator;
