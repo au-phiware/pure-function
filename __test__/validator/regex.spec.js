@@ -1,4 +1,4 @@
-import regex from '../../validator/regex';
+import regex from '../../src/validator/regex';
 
 describe('validate', () => {
   describe('invalid config object', () => {

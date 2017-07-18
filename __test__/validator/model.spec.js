@@ -1,4 +1,4 @@
-import model from '../../validator/model';
+import model from '../../src/validator/model';
 
 describe('model', () => {
   it('should return an object', () =>

@@ -1,4 +1,4 @@
-import required from '../../validator/required';
+import required from '../../src/validator/required';
 
 describe('validate', () => {
   describe('invalid config object', () => {

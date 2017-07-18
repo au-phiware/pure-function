@@ -1,4 +1,4 @@
-import email from '../../validator/email';
+import email from '../../src/validator/email';
 
 describe('validate', () => {
   describe('invalid config object', () => {
