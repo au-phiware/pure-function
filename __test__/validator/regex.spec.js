@@ -1,60 +1,99 @@
-import required from '../../validator/required';
+import regex from '../../validator/regex';
 
 describe('validate', () => {
   describe('invalid config object', () => {
     it(`
       should throw a TypeError if undefined is passed for the config object
     `, () => {
-        expect(() => required()).toThrowError(TypeError);
+        expect(() => regex()).toThrowError(TypeError);
     });
 
     it(`
       should throw a TypeError if null is passed for the config object
     `, () => {
-        expect(() => required(null)).toThrowError(TypeError);
+        expect(() => regex(null)).toThrowError(TypeError);
     });
 
     it(`
       should throw a TypeError if a non object is passed for the config object
     `, () => {
-        expect(() => required([])).toThrowError(TypeError);
+        expect(() => regex([])).toThrowError(TypeError);
     });
 
     it(`
       should throw a TypeError if a message is not
       a property of the config object
     `, () => {
-        expect(() => required({})).toThrowError(TypeError);
+        expect(() => regex({})).toThrowError(TypeError);
     });
 
     it('should throw a TypeError if a message is undefined', () => {
-        expect(() => required({
-          message: undefined
+        expect(() => regex({
+          message: undefined,
+          expression: 'expression'
         })).toThrowError(TypeError);
     });
 
     it('should throw a TypeError if a message is null', () => {
-        expect(() => required({
-          message: null
+        expect(() => regex({
+          message: null,
+          expression: 'expression'
         })).toThrowError(TypeError);
     });
 
     it('should throw a TypeError if a message is ""', () => {
-        expect(() => required({
-          message: ''
+        expect(() => regex({
+          message: '',
+          expression: 'expression'
         })).toThrowError(TypeError);
     });
 
     it('should throw a TypeError if a message is " "', () => {
-        expect(() => required({
-          message: ' '
+        expect(() => regex({
+          message: ' ',
+          expression: 'expression'
+        })).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if a expression is not
+      a property of the config object
+    `, () => {
+        expect(() => regex({message: 'message'})).toThrowError(TypeError);
+    });
+
+    it('should throw a TypeError if a expression is undefined', () => {
+        expect(() => regex({
+          message: 'message',
+          expression: undefined
+        })).toThrowError(TypeError);
+    });
+
+    it('should throw a TypeError if a expression is null', () => {
+        expect(() => regex({
+          message: 'message',
+          expression: null
+        })).toThrowError(TypeError);
+    });
+
+    it('should throw a TypeError if a expression is ""', () => {
+        expect(() => regex({
+          message: 'message',
+          expression: ''
+        })).toThrowError(TypeError);
+    });
+
+    it('should throw a TypeError if a expression is " "', () => {
+        expect(() => regex({
+          message: 'message',
+          expression: ' '
         })).toThrowError(TypeError);
     });
   });
 
   describe('execution', () => {
-    const validationMessage = 'This field is required';
-    const validate = required({message: validationMessage});
+    const validationMessage = 'Value must match regular expression';
+    const validate = regex({message: validationMessage, expression: '[a-z]'});
 
     describe('invalid values', () => {
       describe('undefined', () => {
@@ -85,31 +124,17 @@ describe('validate', () => {
         });
       });
 
-      describe('""', () => {
+      describe('1', () => {
         it('should return an object', () => {
-            expect(typeof validate('')).toBe('object');
+            expect(typeof validate('1')).toBe('object');
         });
 
         it('should return false for property valid', () => {
-            expect(validate('').valid).toBe(false);
+            expect(validate('1').valid).toBe(false);
         });
 
         it('should return message describing the validation error', () => {
-            expect(validate('').message).toBe(validationMessage);
-        });
-      });
-
-      describe('" "', () => {
-        it('should return an object', () => {
-            expect(typeof validate('')).toBe('object');
-        });
-
-        it('should return false for property valid', () => {
-            expect(validate('').valid).toBe(false);
-        });
-
-        it('should return message describing the validation error', () => {
-            expect(validate('').message).toBe(validationMessage);
+            expect(validate('1').message).toBe(validationMessage);
         });
       });
     });
@@ -125,7 +150,7 @@ describe('validate', () => {
         });
 
         it('should return null for property message', () => {
-            expect(validate('a').message).toBe(null);
+            expect(validate('a').message).toBeNull();
         });
       });
     });

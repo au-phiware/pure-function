@@ -1,13 +1,14 @@
-export default (valid, type) => {
+export default (valid, message) => {
   if (typeof valid !== 'boolean') {
     throw new TypeError('valid');
   }
 
-  if (type !== null && typeof type !== 'string') {
-    throw new TypeError('type');
+  if (typeof message !== 'string' || message.trim().length === 0) {
+    throw new TypeError('message');
   }
 
+  const actualMessage = (valid ? null : message);
   return {
-    valid, type
+    valid, message: actualMessage
   };
 };
