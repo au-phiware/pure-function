@@ -5,6 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.validator = undefined;
 
-var _validator = require('./dist/validator');
+var _validator = require('./validator');
 
 exports.validator = _validator.validator;

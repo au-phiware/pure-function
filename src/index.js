@@ -1,3 +1,3 @@
-import {validator} from './dist/validator';
+import {validator} from './validator';
 
 export {validator};
