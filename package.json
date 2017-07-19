@@ -4,7 +4,7 @@
   "description": "This library contains pure javascript functions to the acts on the supplied input parameters into outputs with no internal state",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir lib",
     "eslint": "./node_modules/eslint/bin/eslint.js --ignore-path .eslintignore .",
     "jest": "./node_modules/jest/bin/jest.js",
     "prepublishOnly": "npm run eslint && npm run jest && npm run build"
