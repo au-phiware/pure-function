@@ -1,5 +1,5 @@
-export default (valid, message) => {
-  if (typeof valid !== 'boolean') {
+export default (validate, message) => {
+  if (typeof validate !== 'function') {
     throw new TypeError('valid');
   }
 
@@ -7,6 +7,7 @@ export default (valid, message) => {
     throw new TypeError('message');
   }
 
+  const valid = validate();
   const actualMessage = (valid ? null : message);
   return {
     valid, message: actualMessage

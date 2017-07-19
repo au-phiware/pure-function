@@ -1,26 +1,17 @@
-import model from './model';
-
-export default (config) => {
-  if (
-    !config.hasOwnProperty('message')
-    || !config.message
-    || !config.message.trim()
+export default (expression) => {
+  if (typeof expression !== 'object'
+    || !expression.toString().startsWith('/')
+    || !expression.toString().endsWith('/')
   ) {
-    throw new TypeError('config.message');
+    throw new TypeError('expression');
   }
 
-  if (
-    !config.hasOwnProperty('expression')
-    || typeof config.expression !== 'object'
-    || !config.expression.toString().startsWith('/')
-    || !config.expression.toString().endsWith('/')
-  ) {
-    throw new TypeError('config.expression');
-  }
-
-  const {message, expression} = config;
   const regex = new RegExp(expression);
   return (value) => {
-    return model(Boolean(value) ? regex.test(value) : false, message);
+    if (value === undefined || value === null) {
+      return false;
+    }
+
+    return regex.test(value);
   };
 };
