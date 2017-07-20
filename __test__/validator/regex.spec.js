@@ -1,54 +1,88 @@
-import regex from '../../src/validator/regex';
+import initializer from '../../src/validator/regex';
 
 describe('regex', () => {
-  describe('initializer', () => {
-    it('should throw a TypeError if expression parameter is undefined', () => {
-      expect(() => regex()).toThrowError(TypeError);
+  describe('config parameter', () => {
+    it('should throw a TypeError if config parameter is undefined', () => {
+      expect(() => initializer()).toThrowError(TypeError);
     });
 
-    it('should throw a TypeError if expression parameter is null', () => {
-      expect(() => regex(null)).toThrowError(TypeError);
-    });
-
-    it(`
-      should throw a TypeError if expression parameter is not an object
-    `, () => {
-      expect(() => regex([])).toThrowError(TypeError);
+    it('should throw a TypeError if config parameter is null', () => {
+      expect(() => initializer(null)).toThrowError(TypeError);
     });
 
     it(`
-      should throw a TypeError if expression does not contain
-      the property expression
+      should throw a TypeError if config parameter is not an object
     `, () => {
-      expect(() => regex({})).toThrowError(TypeError);
+      expect(() => initializer([])).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if config parameter does not contain a expression
+    `, () => {
+      expect(() => initializer({})).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if config parameter.expression is undefined
+    `, () => {
+      expect(() => initializer({
+        expression: undefined
+      })).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if config parameter.expression is null
+    `, () => {
+      expect(() => initializer({
+        expression: null
+      })).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if config parameter.expression is not an object
+    `, () => {
+      expect(() => initializer({
+        expression: false
+      })).toThrowError(TypeError);
+    });
+
+    it(`
+      should throw a TypeError if config parameter.expression is not a regular
+      expression object
+    `, () => {
+      expect(() => initializer({
+        expression: {}
+      })).toThrowError(TypeError);
     });
   });
 
   describe('value', () => {
-    let validate;
+    let regex;
 
     beforeAll(() => {
-      validate = regex(/[a-z]/);
+      regex = initializer({
+        expression: /[a-z]/
+      });
     });
 
     it('should return false for undefined', () => {
-      expect(validate()).toBe(false);
+      expect(regex()).toBe(false);
     });
 
     it('should return false for null', () => {
-      expect(validate(null)).toBe(false);
+      expect(regex(null)).toBe(false);
     });
 
     it('should return false for "1"', () => {
-      expect(validate('1')).toBe(false);
+      expect(regex('1')).toBe(false);
     });
 
     it('should return true for "a"', () => {
-      expect(validate('a')).toBe(true);
+      expect(regex('a')).toBe(true);
     });
 
     it('should return true for true', () => {
-      expect(validate(true)).toBe(true);
+      expect(regex(true)).toBe(true);
     });
   });
 });
