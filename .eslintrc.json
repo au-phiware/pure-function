@@ -1,7 +1,12 @@
 {
   "extends": "google",
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
   "rules": {
-    "comma-dangle": ["error", "never"]
-  },
-  "parser": "babel-eslint"
+    "comma-dangle": ["error", "never"],
+    "object-curly-spacing": ["error", "always"],
+    "babel/object-curly-spacing": ["error", "always"]
+  }
 }

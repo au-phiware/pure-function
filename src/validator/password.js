@@ -23,10 +23,10 @@ export default (config) => {
     );
   }
 
-  const {minLength, maxLength} = config;
+  const { minLength, maxLength } = config;
   /* eslint max-len: ["error", 160] */
   const pattern = `^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{${minLength},${maxLength ? maxLength : ''}}`;
-  const validate = regex({expression: new RegExp(pattern)});
+  const validate = regex({ expression: new RegExp(pattern) });
   return (value) => {
     return validate(value);
   };
