@@ -1,13 +1,14 @@
 {
   "name": "pure-function",
-  "version": "0.0.1-alpha.15",
+  "version": "0.0.1-alpha.16",
   "description": "This library contains pure javascript functions to the acts on the supplied input parameters into outputs with no internal state",
   "main": "lib/index.js",
-  "module": "es/index.js",
+  "module": "lib/index.es.js",
+  "jsnext:main": "lib/index.es.js",
   "scripts": {
     "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-file es",
     "eslint": "./node_modules/eslint/bin/eslint.js --ignore-path .eslintignore .",
     "jest": "./node_modules/jest/bin/jest.js",
     "prepublishOnly": "npm run eslint && npm run jest && npm run build"

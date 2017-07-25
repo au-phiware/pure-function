@@ -1,7 +1,13 @@
-import initializer from '../../src/validator/regex';
+import initializer from '../../src/constraint/regex';
 
 describe('regex', () => {
   describe('config parameter', () => {
+    it('should return a function', () =>
+      expect(typeof initializer({
+        expression: /[a-z]/
+      })).toBe('function')
+    );
+
     it('should throw a TypeError if config parameter is undefined', () => {
       expect(() => initializer()).toThrowError(TypeError);
     });
@@ -17,37 +23,31 @@ describe('regex', () => {
     });
 
     it(`
-      should throw a TypeError if config parameter does not contain a expression
+      should throw a TypeError if config parameter does not contain expression
     `, () => {
       expect(() => initializer({})).toThrowError(TypeError);
     });
 
-    it(`
-      should throw a TypeError if config parameter.expression is undefined
-    `, () => {
+    it('should throw a TypeError if config.expression is undefined', () => {
       expect(() => initializer({
         expression: undefined
       })).toThrowError(TypeError);
     });
 
-    it(`
-      should throw a TypeError if config parameter.expression is null
-    `, () => {
+    it('should throw a TypeError if config.expression is null', () => {
       expect(() => initializer({
         expression: null
       })).toThrowError(TypeError);
     });
 
-    it(`
-      should throw a TypeError if config parameter.expression is not an object
-    `, () => {
+    it('should throw a TypeError if config.expression is not an object', () => {
       expect(() => initializer({
         expression: false
       })).toThrowError(TypeError);
     });
 
     it(`
-      should throw a TypeError if config parameter.expression is not a regular
+      should throw a TypeError if config.expression is not a regular
       expression object
     `, () => {
       expect(() => initializer({

@@ -1,4 +1,4 @@
-import required from '../../src/validator/required';
+import required from '../../src/constraint/required';
 
 describe('required', () => {
   describe('value', () => {

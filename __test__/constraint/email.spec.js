@@ -1,4 +1,4 @@
-import email from '../../src/validator/email';
+import email from '../../src/constraint/email';
 
 describe('email', () => {
   describe('value', () => {
