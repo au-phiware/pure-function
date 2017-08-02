@@ -1,39 +1,39 @@
-import initializer from '../../src/validator';
+import { validator } from '../../src/validator';
 
 describe('validator', () => {
   describe('config parameter', () => {
     it('should return a function', () =>
-      expect(typeof initializer({
+      expect(typeof validator({
         validate: (value) => true, message: 'message'
       })).toBe('function')
     );
 
     it('should throw a TypeError if config parameter is undefined', () =>
-      expect(() => initializer(undefined)).toThrowError(TypeError)
+      expect(() => validator(undefined)).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config parameter is null', () =>
-      expect(() => initializer(null)).toThrowError(TypeError)
+      expect(() => validator(null)).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config parameter is not an object', () =>
-      expect(() => initializer('')).toThrowError(TypeError)
+      expect(() => validator('')).toThrowError(TypeError)
     );
 
     it(`
       should throw a TypeError if config parameter does not contain validate
     `, () =>
-      expect(() => initializer({ message: 'test' })).toThrowError(TypeError)
+      expect(() => validator({ message: 'test' })).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config.validate is undefined', () =>
-      expect(() => initializer({
+      expect(() => validator({
         validate: undefined, message: 'test'
       })).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config.validate is null', () =>
-      expect(() => initializer({
+      expect(() => validator({
          validate: null, message: 'test'
       })).toThrowError(TypeError)
     );
@@ -41,7 +41,7 @@ describe('validator', () => {
     it(`
       should throw a TypeError if config.validate parameter is not a function
     `, () =>
-      expect(() => initializer({
+      expect(() => validator({
          validate: {}, message: 'test'
       })).toThrowError(TypeError)
     );
@@ -50,23 +50,23 @@ describe('validator', () => {
       should throw a TypeError if missing config parameter
       does not contain message
     `, () =>
-      expect(() => initializer({ validate: (f) => f })).toThrowError(TypeError)
+      expect(() => validator({ validate: (f) => f })).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config.message is undefined', () =>
-      expect(() => initializer({
+      expect(() => validator({
         validate: (f) => f, message: undefined
       })).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config.message is null', () =>
-      expect(() => initializer({
+      expect(() => validator({
          validate: (f) => f, message: null
       })).toThrowError(TypeError)
     );
 
     it('should throw a TypeError if config.message is not a string', () =>
-      expect(() => initializer({
+      expect(() => validator({
          validate: (f) => f, message: {}
       })).toThrowError(TypeError)
     );
@@ -74,7 +74,7 @@ describe('validator', () => {
 
   describe('value', () => {
     const message = 'Test';
-    const validate = initializer({ validate: (f) => f, message });
+    const validate = validator({ validate: (f) => f, message });
 
     describe('valid', () => {
       it('should return an object with valid true and message null', () => {

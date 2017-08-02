@@ -1,29 +1,18 @@
-export default (config) => {
-  if (!config || typeof config !== 'object') {
-    throw new TypeError('config');
-  }
+import validator from './validator';
+import * as constraint from '../constraint';
 
-  if (
-    !config.hasOwnProperty('validate')
-    || !config.validate
-    || typeof config.validate !== 'function'
-  ) {
-    throw new TypeError('config.validate');
-  }
+const emailValidator = ({ message }) =>
+  validator({ validate: constraint.emailConstraint, message });
 
-  if (
-    !config.hasOwnProperty('message')
-    || !config.message
-    || typeof config.message !== 'string'
-  ) {
-    throw new TypeError('config.message');
-  }
+const requiredValidator = ({ message }) =>
+  validator({ validate: constraint.requiredConstraint, message });
 
-  return (value) => {
-    const valid = config.validate(value);
-    return {
-      valid,
-      message: (valid ? null : config.message)
-    };
-  };
+const passwordValidator = ({ message, ...config }) =>
+  validator({ validate: constraint.passwordConstraint(config), message });
+
+export {
+  validator,
+  emailValidator,
+  requiredValidator,
+  passwordValidator
 };
