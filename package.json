@@ -36,7 +36,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-node6": "^11.0.0",
-    "crossenv": "^6.1.1",
+    "cross-env": "^6.1.1",
     "eslint": "^4.2.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-babel": "^4.1.1",
